@@ -52,9 +52,8 @@ export async function setItem<T>(ref: DatabaseReference, body: T) {
 
 export async function deleteItem(ref: DatabaseReference) {
     try {
-        remove(ref);
-        return { ok: true };
+        await remove(ref);
     } catch(e) {
-        return { ok: false };
+        throw new Error();
     }
 }
