@@ -22,3 +22,13 @@ export async function PUT(req: Request) {
         status: answer.status,
     });
 }
+
+export async function DELETE(req: Request) {
+    const noteId: unknown = await req.json();
+
+    const answer = await deleteNote(noteId);
+    
+    return NextResponse.json(answer.message, {
+        status: answer.status,
+    });
+}
