@@ -1,4 +1,4 @@
-import { DataSnapshot, get, remove, set, type DatabaseReference, type Query } from "firebase/database";
+import { DataSnapshot, get, remove, set, update, type DatabaseReference, type Query } from "firebase/database";
 
 /* 
 Если из firebase достать одну запись и проитерироваться по ней snapshot.forEach(),
@@ -44,10 +44,17 @@ export async function getArrayItems<T>(ref: Query) {
 export async function setItem<T>(ref: DatabaseReference, body: T) {
     try { 
         await set(ref, body);
-        return { ok: true };
     } catch(e) {
-        return { ok: false };
+        throw new Error();
     }
+}
+
+export async function putItem(ref: DatabaseReference, body: object) {
+  try {
+    await update(ref, body);
+  } catch(e) {
+    throw new Error();
+  }
 }
 
 export async function deleteItem(ref: DatabaseReference) {

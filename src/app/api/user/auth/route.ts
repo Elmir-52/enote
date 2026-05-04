@@ -1,10 +1,10 @@
-import authorization from "@/lib/logic/authorization";
+import authorizationUser from "@/lib/logic/authorizationUser";
 import { NextResponse } from "next/server";
 
 export async function POST(req: Request) {
     const user: unknown = await req.json();
 
-    const answer = await authorization(user);
+    const answer = await authorizationUser(user);
     
     if (answer) {
         return NextResponse.json(

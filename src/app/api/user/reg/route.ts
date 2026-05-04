@@ -1,10 +1,10 @@
-import registration from "@/lib/logic/registration";
+import registrationUser from "@/lib/logic/registrationUser";
 import { NextResponse } from "next/server";
 
 export async function POST(req: Request) {
     const user: unknown = await req.json();
 
-    const answer = await registration(user);
+    const answer = await registrationUser(user);
 
     if (answer) {
         return NextResponse.json(
